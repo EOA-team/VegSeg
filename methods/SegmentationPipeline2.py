@@ -9,6 +9,17 @@ from sklearn.preprocessing import StandardScaler
 from skimage.color import rgb2lab, rgb2luv, rgb2hsv, rgb2ycbcr, rgb2yuv
 from methods import base  # Assuming 'methods' contains 'base.BenchmarkMethod'
 from rasterio.merge import merge
+import os
+import glob
+import numpy as np
+import rasterio
+from rasterio.windows import Window
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.preprocessing import StandardScaler
+from skimage.color import rgb2lab, rgb2luv, rgb2hsv, rgb2ycbcr, rgb2yuv
+from methods import base
+from rasterio.merge import merge
+import json 
 
 # Function to dynamically segment the GeoTIFF
 def segment_geotiff(inputlayer, segment_size_pixels=1000):
@@ -362,25 +373,25 @@ def rgb2hsi(rgb: np.array):
 
     return np.stack((h, s, i), axis=1)
 
-import json
-
-def run_segmentation_pipeline(map_file, rgb_folder=None):
-    # Use relative path based on this script's location
-    base_path = os.path.dirname(os.path.realpath(__file__))
+def run_segmentation_pipeline(map_file, rgb_folder=None, general_model_path=None):
+    """
+    Runs segmentation pipeline.
+    
+    Parameters:
+    - map_file: path to the input GeoTIFF
+    - rgb_folder: optional path to snapshot images for training
+    - general_model_path: path to general model (used if rgb_folder is None)
+    """
 
     if rgb_folder is None:
-        print("Running pipeline using the general model...")
-
-        # Define general model data path
-        general_data_path = os.path.join(base_path, '..', 'data', 'general_model')
-
-        # Define training, validation, and test paths
-        train_path = os.path.join(general_data_path, 'train_256')
-        validation_path = os.path.join(general_data_path, 'validation_256')
-        test_path = os.path.join(general_data_path, 'test_256')
+        if general_model_path is None:
+            raise ValueError("No RGB folder or general model path provided. Please pass a valid path.")
+        print("Running pipeline using the provided general model path...")
+        train_path = os.path.join(general_model_path, 'train_256')
+        validation_path = os.path.join(general_model_path, 'validation_256')
+        test_path = os.path.join(general_model_path, 'test_256')
     else:
         print("Running pipeline using RGB-folder-specific model...")
-        # Extract base name and construct paths
         base_name = os.path.basename(rgb_folder)
         train_path = os.path.join(rgb_folder, f'{base_name}_resized_histogrammatched_training', 'train_256')
         validation_path = os.path.join(rgb_folder, f'{base_name}_resized_histogrammatched_training', 'validation_256')
@@ -392,7 +403,7 @@ def run_segmentation_pipeline(map_file, rgb_folder=None):
             raise ValueError(f"{path_label} path does not exist: {path}")
 
     # Segment the GeoTIFF
-    segment_geotiff(map_file)
+    #segment_geotiff(map_file)
 
     # Train the model
     model = SadeghiEtAl2017()

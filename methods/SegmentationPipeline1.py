@@ -70,7 +70,7 @@ def find_closest_map(rgb_folder, map_folder):
         print(f"No matching map found for RGB folder: {rgb_folder_name}")
         return None
 
-def load_or_train_model():
+def load_or_train_model(train_path='data/train', val_path='data/validation'):
     try:
         if os.path.exists(model_file_path):
             print("Loading existing trained model.")
@@ -78,7 +78,7 @@ def load_or_train_model():
         else:
             print("Training model for the first time...")
             model = SadeghiEtAl2017()
-            train_metrics, val_metrics = model.train(train_path='data/train', val_path='data/validation')
+            train_metrics, val_metrics = model.train(train_path=train_path, val_path=val_path)
             print(f"Model training completed: Train Metrics: {train_metrics}, Val Metrics: {val_metrics}")
             joblib.dump(model, model_file_path)  # Save model in the same folder as this script
             print(f"Model saved to {model_file_path}")
@@ -88,21 +88,22 @@ def load_or_train_model():
         raise
 
 
-def run_pipeline(input_RGB, input_map_file, startlocation=None, flightheight=None, zoom=None):
+
+def run_pipeline(input_RGB, input_map_file, startlocation=None, flightheight=None, zoom=None,
+                 train_path='data/train', val_path='data/validation'):
     if not input_RGB:
         print("No RGB input path provided. Skipping pipeline1 and applying general model.")
         return
 
     print(f"Starting pipeline for RGB: {input_RGB} and Map File: {input_map_file}")
 
-    # input_map_file is directly provided (no searching in folder)
     input_map = input_map_file
     if not os.path.isfile(input_map):
         print(f"Map file does not exist: {input_map}")
         return
 
     try:
-        model = load_or_train_model()
+        model = load_or_train_model(train_path=train_path, val_path=val_path)
     except Exception as e:
         print("Aborting pipeline due to model issue.")
         return
