@@ -20,12 +20,12 @@ if __name__ == "__main__":
 
     # Path to the RGB orthomosaic GeoTIFF file.
     # Must be in WGS84 coordinate system (EPSG:4326).
-    input_map_file = "/home/f60041558@agsad.admin.ch/mnt/eo-nas1/eoa-share/projects/011_experimentEObserver/data/Final/Segmentation_HR/Test2/mapping/re112o_20250602_mapping.tif"
+    input_map_file = "path/to/orthomosaic.tif"
 
     # Path to the folder containing high-resolution snapshot images.
     # Optional: if you do not have snapshot images or want to use the pretrained general model,
     # set this to None.
-    input_snapshot_path = "/home/f60041558@agsad.admin.ch/mnt/eo-nas1/eoa-share/projects/011_experimentEObserver/data/Final/Segmentation_HR/Test2/snapshot_20250602"
+    input_snapshot_path = "path/to/snapshot_folder"
 
     # Optional metadata used only if snapshot images are provided:
     # - startlocation: UAV takeoff GPS coordinates (latitude, longitude)
