@@ -30,7 +30,7 @@ By integrating detailed local segmentation with broader spatial context, VegSeg 
 -   `helpers/` — Helper functions and utilities\
 -   `data/` — Training datasets including `train`, `test`, `validation`, and `general_model`\
 -   `main.py` — Main script to run the segmentation pipeline\
--   `requirements_VegSeg.txt` — Python dependencies\$
+-   `requirements_VegSeg.txt` — Python dependencies\
 
 ------------------------------------------------------------------------
 
