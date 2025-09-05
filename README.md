@@ -63,9 +63,9 @@ The main entry point for running the segmentation pipeline is the `main.py` scri
   Root folder containing all training datasets:  
 
 - **Optional metadata** (used only if snapshot images are provided):  
-- `start_location`: UAV GPS coordinates (latitude, longitude) at takeoff — used for elevation and georeferencing calculations.  
-- `flight_height`: Flight altitude above ground level in meters.  
-- `zoom`: Camera zoom level specific to DJI Mavic 3E.  
+    - `start_location`: UAV GPS coordinates (latitude, longitude) at takeoff — used for elevation and georeferencing calculations.  
+    - `flight_height`: Flight altitude above ground level in meters.  
+    - `zoom`: Camera zoom level specific to DJI Mavic 3E.  
 
 ------------------------------------------------------------------------
 
