@@ -8,7 +8,7 @@
 
 The high-resolution model, based on Sadeghi et al. (2017), employs a Random Forest classifier trained on multiple color spaces derived from annotated EWS patches and UAV imagery to accurately segment vegetation with fine spatial detail. Building on this, the field-level model aligns, normalizes, and resizes the high-resolution segmentation results to match the lower-resolution mapping images. This process uses Scale-Invariant Feature Transform (SIFT) for geometric alignment and histogram matching for radiometric normalization, enabling robust multi-scale vegetation segmentation.
 
-By integrating detailed local segmentation with broader spatial context, VegSeg delivers precise and scalable canopy cover mapping optimized for UAV imagery—especially from the DJI Mavic 3E. The pipeline can be applied using your own high-resolution snapshot images of specific sites or with a pretrained general model trained on corn, sugar beet, and sunflower imagery captured by the DJI Mavic 3E.
+By integrating detailed local segmentation with broader spatial context, VegSeg delivers precise and scalable canopy cover mapping optimized for UAV imagery, especially from the DJI Mavic 3E. The pipeline can be either applied using your own high-resolution snapshot images of specific sites or with a pretrained general model trained on corn, sugar beet, and sunflower imagery captured by the DJI Mavic 3E.
 
 ------------------------------------------------------------------------
 
@@ -26,11 +26,14 @@ By integrating detailed local segmentation with broader spatial context, VegSeg 
 
 ## Project Structure {#project-structure}
 
--   `methods/` — Different segmentation methods implemented\
--   `helpers/` — Helper functions and utilities\
--   `data/` — Training datasets including `train`, `test`, `validation`, and `general_model`\
--   `main.py` — Main script to run the segmentation pipeline\
--   `requirements_VegSeg.txt` — Python dependencies\
+-   `methods/` — Different segmentation methods implemented  
+-   `helpers/` — Helper functions and utilities  
+-   `data/` — Contains:  
+    -   `general_model/` — Pretrained general segmentation model  
+    -   `EWS/` — Dataset for training and evaluation   
+-   `main.py` — Main script to run the segmentation pipeline  
+-   `config.json` — Configuration file with paths and parameters  
+-   `requirements_VegSeg.txt` — Python dependencies  
 
 ------------------------------------------------------------------------
 
@@ -44,7 +47,7 @@ Install the required Python packages:
 
 ## Usage {#usage}
 
-The main entry point for running the segmentation pipeline is the `main.py` script. Update the input paths and parameters as needed before running:
+The main entry point for running the segmentation pipeline is the `main.py` script. Update the `config.json` file before running.
 
 *python main.py*
 
@@ -56,10 +59,13 @@ The main entry point for running the segmentation pipeline is the `main.py` scri
     Path to a folder containing high-resolution RGB snapshot images of the area of interest.
     -   Provide this path if you want to train a model specific to your snapshots.
     -   Set to `None` to use the pretrained general model for DJI Mavic 3E.
--   Optional metadata (used only if snapshot images are provided):
-    -   `startlocation`: UAV GPS coordinates (latitude, longitude) at takeoff — used for elevation and georeferencing calculations.
-    -   `flightheight`: Flight altitude above ground level in meters.
-    -   `zoom`: Camera zoom level specific to DJI Mavic 3E.
+- **`data_path`** (required)  
+  Root folder containing all training datasets:  
+
+- **Optional metadata** (used only if snapshot images are provided):  
+- `start_location`: UAV GPS coordinates (latitude, longitude) at takeoff — used for elevation and georeferencing calculations.  
+- `flight_height`: Flight altitude above ground level in meters.  
+- `zoom`: Camera zoom level specific to DJI Mavic 3E.  
 
 ------------------------------------------------------------------------
 
@@ -81,7 +87,7 @@ Each dataset includes **RGB images** and their corresponding **binary masks** (w
 
 -   **Location & Structure:**
 
-    -   **data/**
+    -   **data/EWS/**
         -   **train/**
             -   image_01.jpg
             -   image_01_mask.jpg
@@ -97,7 +103,7 @@ Each dataset includes **RGB images** and their corresponding **binary masks** (w
 
 ### 2. **General Model Training Dataset**
 
--   **Source:** UAV imagery captured with **DJI Mavic 3E** (sunny white balance; crops: corn, sugar beet, sunflower)\
+-   **Source:** UAV imagery captured with **DJI Mavic 3E** (sunny white balance mode; crops: corn, sugar beet, sunflower)\
 -   **Content:**
     -   RGB patches (**256×256 pixels**)
     -   Corresponding binary masks (`*_mask.*`) for segmentation\
