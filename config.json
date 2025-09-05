@@ -1,10 +1,10 @@
 {
-  "input_map_file": "/home/f60041558@agsad.admin.ch/mnt/eo-nas1/eoa-share/projects/011_experimentEObserver/data/Final/Segmentation_HR/RE_20250603/Mapping/re112o_20250603_mapping.tif",
-  "input_snapshot_path": "/home/f60041558@agsad.admin.ch/mnt/eo-nas1/eoa-share/projects/011_experimentEObserver/data/Final/Segmentation_HR/RE_20250603/Snapshot_20250603",
-  "general_model_path": "/home/f60041558@agsad.admin.ch/mnt/eo-nas1/eoa-share/projects/011_experimentEObserver/data/VegSegTest/general_model",
+  "input_map_file": "path/to/orthomosaic.tif",
+  "input_snapshot_path": "path/to/snapshot_folder",
+  "general_model_path": "path/to/general_model_folder",
   "start_location": [47.430487, 8.522988],
   "flight_height": 40,
   "zoom": 7,
-  "train_data_path": "/home/f60041558@agsad.admin.ch/mnt/eo-nas1/eoa-share/projects/011_experimentEObserver/code/Final/Segmentation/data/train",
-  "val_data_path": "/home/f60041558@agsad.admin.ch/mnt/eo-nas1/eoa-share/projects/011_experimentEObserver/code/Final/Segmentation/data/validation"
+  "train_data_path": "path/to/data/train",
+  "val_data_path": "path/to/data/validation"
 }
