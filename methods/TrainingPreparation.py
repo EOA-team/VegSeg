@@ -134,7 +134,3 @@ def process_all_folders(base_folder):
             crop_and_save_images(input_folder, output_folder)
         else:
             print(f"Folder {input_folder} does not exist, skipping.")
-
-# Example usage
-#base_folder_name = "/home/f60041558@agsad.admin.ch/mnt/eo-nas1/eoa-share/projects/011_experimentEObserver/data/UAV/Sampling/Reckenholz/Eingang/DJI_202405191334_085_ReckenholzEingang"
-#process_all_folders(base_folder_name)
