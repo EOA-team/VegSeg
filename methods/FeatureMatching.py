@@ -1,4 +1,3 @@
-#%%
 import os
 import rasterio
 from rasterio.windows import from_bounds
