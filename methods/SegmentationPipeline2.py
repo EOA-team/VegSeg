@@ -1,4 +1,3 @@
-#%%
 import os
 import glob
 import numpy as np
@@ -432,9 +431,3 @@ def run_segmentation_pipeline(map_file, rgb_folder=None, general_model_path=None
 
     # Merge segmented predictions
     merge_geotiff_segments(map_file)
-
-#map_file = "/home/f60041558@agsad.admin.ch/mnt/eo-nas1/eoa-share/projects/011_experimentEObserver/data/Final/Segmentation_HR/Test_RE/Mapping/re112o_20250527_mapping.tif"
-#rgb_folder = "/home/f60041558@agsad.admin.ch/mnt/eo-nas1/eoa-share/projects/011_experimentEObserver/data/Final/Segmentation_HR/Test_RE/Snapshot"
-#run_segmentation_pipeline(map_file, rgb_folder)
-
-# %%
