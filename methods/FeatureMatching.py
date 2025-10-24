@@ -248,8 +248,3 @@ def process_folder(input_folder, inputpath_geotiff):
     # Save updated metadata to CSV
     metadata_df.to_csv(metadata_csv_path, index=False)
     print(f"Updated metadata saved to {metadata_csv_path}")
-
-#input_folder = '/home/f60041558@agsad.admin.ch/mnt/eo-nas1/eoa-share/projects/011_experimentEObserver/data/Final/Segmentation_HR/Test/Snapshot/DJI_202406061353_114_EschikonSteinmueri1'
-#inputpath_geotiff = '/home/f60041558@agsad.admin.ch/mnt/eo-nas1/eoa-share/projects/011_experimentEObserver/data/Final/Segmentation_HR/Test/Mapping/202406061419_115_EschikonSteinmueri1MappingLayer.tif'
-#process_folder(input_folder, inputpath_geotiff)
-# %%
