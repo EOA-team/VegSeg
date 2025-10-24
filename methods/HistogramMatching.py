@@ -1,4 +1,3 @@
-#%%
 import os
 import shutil
 import numpy as np
@@ -86,7 +85,3 @@ def process_images(input_folderpath):
                     print(f"  ⚠️ Error processing {file_name}: {e}")
             else:
                 print(f"  ⚠️ No corresponding ROI image found for: {file_name}")
-
-# Example usage
-#input_folderpath = "/home/f60041558@agsad.admin.ch/mnt/eo-nas1/eoa-share/projects/011_experimentEObserver/data/Final/Segmentation_HR/Test/Snapshot/DJI_202406061353_114_EschikonSteinmueri1"
-#process_images(input_folderpath)
