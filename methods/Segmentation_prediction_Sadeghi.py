@@ -1,4 +1,3 @@
-# %%
 from PIL import Image
 from methods import base
 import numpy as np
@@ -251,18 +250,3 @@ def convert_png_to_jpg(png_path='data/prediction_test_output', jpg_path='data/pr
         image.save(output_file, format='JPEG', quality=100)
 
     print(f"Converted PNG images saved to {jpg_path}")
-
-# %%
-#import os
-#from skimage import io  # Add this line for io module
-
-# Instantiate the model
-#model = SadeghiEtAl2017()
-
-# Train the model
-#train_metrics, val_metrics = model.train(train_path='data/train', val_path='data/validation')
-
-# %%
-# Call the plot_predictions method
-#model.plot_predictions_jpg(jpg_path='/home/f60041558@agsad.admin.ch/mnt/eo-nas1/eoa-share/projects/011_experimentEObserver/data/UAV/Sampling/Reckenholz/Eingang/DJI_202407151341_164_ReckenholzEingang')
-# %%
