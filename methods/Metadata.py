@@ -118,7 +118,7 @@ def get_elevation_from_metadata(metadata):
     return elevations
 
 def get_startlocation(flightnumber):
-    startlocations_path = '/home/f60041558@agsad.admin.ch/mnt/eo-nas1/eoa-share/projects/011_experimentEObserver/data/UAV/Metadata/Startlocations.xlsx'
+    startlocations_path = 'path_to_file'
     try:
         df_startlocations = pd.read_excel(startlocations_path, engine='openpyxl')
     except ImportError as e:
@@ -237,13 +237,5 @@ def update_metadata_file(folderpath, startlocation=None, flightheight=None, zoom
 
     df.to_csv(metadata_file_path, index=False)
     print(f"Metadata file updated at: {metadata_file_path}")
-
-#folderpath = "/home/f60041558@agsad.admin.ch/mnt/eo-nas1/eoa-share/projects/011_experimentEObserver/data/Final/Segmentation_HR/Test/Snapshot/DJI_202406061353_114_EschikonSteinmueri1"
-
-
-# Optional: Manually set start location (lat, lon) or flight height (in meters)
-#startlocation = (47.429470,8.514512)  # Set to None to use automatic lookup
-#fligtheight = 15  # Set to None to use elevation + 15m
-#zoom = 10  # e.g., 10× total zoom
 
 #update_metadata_file(folderpath, startlocation=47.429470,8.514512, flightheight=10, zoom=10)
