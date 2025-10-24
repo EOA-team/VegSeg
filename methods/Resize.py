@@ -1,4 +1,3 @@
-#%%
 import os
 import pandas as pd
 import cv2
@@ -64,10 +63,3 @@ def process_images(input_folder_rgb):
         print(f"Resized and saved images for {image_name}.")
 
     print("Processing complete.")
-
-# Example usage
-#process_images(
-#   input_folder_rgb='/home/f60041558@agsad.admin.ch/mnt/eo-nas1/eoa-share/projects/011_experimentEObserver/data/Final/Segmentation_HR/RE_20250602/Snapshot_20250602'
-#)
-
-# %%
