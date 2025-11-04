@@ -402,7 +402,7 @@ def run_segmentation_pipeline(map_file, rgb_folder=None, general_model_path=None
             raise ValueError(f"{path_label} path does not exist: {path}")
 
     # Segment the GeoTIFF
-    #segment_geotiff(map_file)
+    segment_geotiff(map_file)
 
     # Train the model
     model = SadeghiEtAl2017()
