@@ -58,7 +58,7 @@ The main entry point for running the segmentation pipeline is the `main.py` scri
 -   **`input_snapshot_path`** (optional)\
     Path to a folder containing high-resolution RGB snapshot images of the area of interest.
     -   Provide this path if you want to train a model specific to your snapshots.
-    -   Set to `None` to use the pretrained general model for DJI Mavic 3E.
+    -   Set to `null` to use the pretrained general model for DJI Mavic 3E.
 - **`data_path`** (required)  
   Root folder containing all training datasets:  
 
