@@ -97,6 +97,13 @@ def run_pipeline(input_RGB, input_map_file, startlocation=None, flightheight=Non
 
     print(f"Starting pipeline for RGB: {input_RGB} and Map File: {input_map_file}")
 
+    try:
+        create_metadata_file(input_RGB)
+        print("Initial metadata file created.")
+    except Exception as e:
+        print(f"Metadata creation error: {e}")
+        return
+        
     input_map = input_map_file
     if not os.path.isfile(input_map):
         print(f"Map file does not exist: {input_map}")
