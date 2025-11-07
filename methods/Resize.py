@@ -2,7 +2,7 @@ import os
 import pandas as pd
 import cv2
 import numpy as np
-from osgeo import gdal
+import rasterio
 
 def resize_image(image, target_shape):
     return cv2.resize(image, (target_shape[1], target_shape[0]), interpolation=cv2.INTER_AREA)
@@ -43,8 +43,8 @@ def process_images(input_folder_rgb):
             continue
 
         # Load and orient cropped GeoTIFF
-        cropped_tif = gdal.Open(cropped_tif_path)
-        cropped_tif_array = cropped_tif.ReadAsArray().transpose((1, 2, 0))  # HWC
+        with rasterio.open(cropped_tif_path) as src:
+            cropped_tif_array = src.read().transpose((1, 2, 0))  # HWC
         cropped_tif_array = ensure_landscape_array(cropped_tif_array)
         target_shape = cropped_tif_array.shape[:2]
 
